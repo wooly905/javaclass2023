@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>This is test html</title>
+</head>
+<body th:object="${customer}">
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>email</td>
+    </tr>
+    <tr>
+        <td th:text="*{id}">id</td>
+        <td th:text="*{name}">name</td>
+        <td th:text="*{email}">email</td>
+    </tr>
+</table>
+</body>
+</html>

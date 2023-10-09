@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>This is test html</title>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>email</td>
+        <td>status.index</td>
+        <td>status.count</td>
+        <td>status.size</td>
+        <td>status.current</td>
+        <td>status.first</td>
+        <td>status.last</td>
+        <td>status.even</td>
+        <td>status.odd</td>
+    </tr>
+    </thead>
+    <tr th:each="customer,status : ${customers}">
+        <td th:text="${customer.id}">id</td>
+        <td th:text="${customer.name}">name</td>
+        <td th:text="${customer.email}">email</td>
+        <td th:text="${status.index}">index</td>
+        <td th:text="${status.count}">count</td>
+        <td th:text="${status.size}">size</td>
+        <td th:text="${status.current}">current</td>
+        <td th:text="${status.first}">first</td>
+        <td th:text="${status.last}">last</td>
+        <td th:text="${status.even}">even</td>
+        <td th:text="${status.odd}">odd</td>
+    </tr>
+</table>
+</body>
+</html>

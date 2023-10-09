@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>This is test html</title>
+</head>
+<body>
+<p>
+    Value is
+    <span th:if="${value} == '1'">1</span>
+    <span th:unless="${value} == '1'">not 1</span>
+</p>
+<p>
+    Role is
+    <span th:switch="${role}">
+        <span th:case="'admin'">admin</span>
+        <span th:case="'user'">user</span>
+        <span th:case="*">not admin, not user</span>
+    </span>
+</p>
+</body>
+</html>
