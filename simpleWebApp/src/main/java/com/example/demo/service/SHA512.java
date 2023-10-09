@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 public class SHA512 {
     public static String getSHA512(String input){

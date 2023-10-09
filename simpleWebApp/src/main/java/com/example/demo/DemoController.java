@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.config.CurrencyServiceConfiguration;
+import com.example.demo.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
