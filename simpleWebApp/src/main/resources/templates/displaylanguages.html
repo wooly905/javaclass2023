@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Display language</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>last update</td>
+    </tr>
+    <tr th:each="language,status : ${languages}">
+        <td th:text="${language.languageId}"></td>
+        <td th:text="${language.name}"></td>
+        <td th:text="${language.lastUpdate}"></td>
+    </tr>
+</table>
+</body>
+</html>
