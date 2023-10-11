@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import com.example.demo.config.CurrencyServiceConfiguration;
 import com.example.demo.model.Customer;
@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
+@SessionAttributes("name")
 public class DemoController {
 
     @Autowired
