@@ -21,40 +21,77 @@ public class DemoController {
     @Autowired
     private CurrencyServiceConfiguration currencyConfig;
 
+    // http://localhost:8080/currencyurl
     @RequestMapping("currencyurl")
     @ResponseBody
     public String GetCurrencyServiceUrl() {
         return currencyConfig.getUrl();
     }
 
+    // http://localhost:8080/hello
     @RequestMapping("hello")
     @ResponseBody
     public String hello() {
         return "This is a hello string";
     }
 
-    @RequestMapping("gotohello")
-    public RedirectView goToHello() {
-        return new RedirectView("hello");
+    // http://localhost:8080/hello2
+    @RequestMapping("hello2")
+    @ResponseBody
+    public String hello2() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html>");
+        sb.append("<h1>This is a hello string</h1>");
+        sb.append("<br>");
+        sb.append("<h2>Hello 2</h2>");
+        sb.append("<br>");
+        sb.append("<h3>Hello 3</h3>");
+        sb.append("<br>");
+        sb.append("<h4>Hello 4</h4>");
+        sb.append("<br>");
+
+        sb.append("<table border=1>");
+        sb.append("<tr><td>1</td><td>2</td></tr>");
+        sb.append("<tr><td>3</td><td>4</td></tr>");
+        sb.append("</table>");
+
+        sb.append("</html>");
+
+        return sb.toString();
     }
 
+    // http://localhost:8080/gotohello
+    @RequestMapping("gotohello")
+    public RedirectView goToHello() {
+        return new RedirectView("hello2");
+    }
+
+    // http://localhost:8080/gotohello2
     @RequestMapping(value = "gotohello2", method = RequestMethod.GET)
     public ModelAndView goToHello2() {
         return new ModelAndView("hello");
     }
 
+    @RequestMapping(value = "gotohello2", method = RequestMethod.POST)
+    public ModelAndView goToHello21() {
+        return new ModelAndView("hello");
+    }
+
+    // http://localhost:8080/gotohello3
     @RequestMapping(value = "gotohello3", method = RequestMethod.GET)
     public String goToHello3() {
         return "redirect:hello";
     }
 
+    // http://localhost:8080/showcustomer
     @GetMapping("showcustomer")
     public String showCustomer(Model model) {
-        Customer customer = new Customer(1, "John", "john@test.com");
+        Customer customer = new Customer(1, "John 2", "john2@test.com");
         model.addAttribute("customer", customer);
         return "showCustomer";
     }
 
+    // http://localhost:8080/ifelseswitch
     @GetMapping("ifelseswitch")
     public String ifelseswitch(Model model) {
 
@@ -64,13 +101,15 @@ public class DemoController {
         return "ifelseswitch";
     }
 
+    // http://localhost:8080/showcustomers
     @GetMapping("showcustomers")
     public String showCustomers(Model model) {
         Customer customer = new Customer(1, "John", "john@test.com");
         Customer customer2 = new Customer(2, "Jack", "jack@test.com");
         Customer customer3 = new Customer(3, "Jake", "jake@test.com");
+        Customer customer4 = new Customer(4, "Jill", "jill@test.com");
 
-        List<Customer> customers = Arrays.asList(customer, customer2, customer3);
+        List<Customer> customers = Arrays.asList(customer, customer2, customer3, customer4);
         model.addAttribute("customers", customers);
         return "showCustomers";
     }
