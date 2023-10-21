@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Data // From project Lonbok, generates getter and setter methods, equals(), hashCode(), and a default constructor
 @NoArgsConstructor
 public class Language {
 
