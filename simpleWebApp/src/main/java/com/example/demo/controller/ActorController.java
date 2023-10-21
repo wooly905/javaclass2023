@@ -1,12 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Actor;
+import com.example.demo.model.ActorData;
 import com.example.demo.repository.ActorRepository;
+import com.example.demo.repository.SakilaDatabase;
 import com.example.demo.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +27,23 @@ public class ActorController {
     @Autowired
     private ActorService actorService;
 
+    @Autowired
+    private SakilaDatabase sakilaDatabase;
+
     // http://localhost:8080/displayactors
     @GetMapping("displayactors")
     public String getActors(Model model) {
         List<Actor> actors = actorRepository.getActors();
         model.addAttribute("actors", actors);
         return "displayActors";
+    }
+
+    // http://localhost:8080/displayactorjdbc?year=2005
+    @GetMapping("displayactorjdbc")
+    public String getActors2(Model model, @RequestParam Integer year) {
+        List<ActorData> actors = sakilaDatabase.getActorCount(year);
+        model.addAttribute("actors", actors);
+        return "displayActorsJdbc";
     }
 
     // http://localhost:8080/displaypagedactors
@@ -50,8 +62,8 @@ public class ActorController {
 
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                                                 .boxed()
-                                                 .collect(Collectors.toList());
+                    .boxed()
+                    .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
 

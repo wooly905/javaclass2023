@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show actors</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>actor id</td>
+        <td>actor name</td>
+        <td>rental id</td>
+    </tr>
+    <tr th:each="actor,status : ${actors}">
+        <td th:text="${actor.actorId}"></td>
+        <td th:text="${actor.actorName}"></td>
+        <td th:text="${actor.rentalId}"></td>
+    </tr>
+</table>
+</body>
+</html>
