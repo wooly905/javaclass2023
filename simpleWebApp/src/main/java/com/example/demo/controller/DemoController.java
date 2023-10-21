@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.config.CurrencyServiceConfiguration;
 import com.example.demo.model.Customer;
+import com.example.demo.model.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +115,15 @@ public class DemoController {
         return "showCustomers";
     }
 
+    @GetMapping("mathadd")
+    public String MathAdd(@RequestParam Integer a, @RequestParam Integer bTest, Model model) {
+//        int a1 = Integer.parseInt(a);
+//        int b1 = Integer.parseInt(bTest);
+        int c = a + bTest;
+        model.addAttribute("value", c);
+        return "showQuery";
+    }
+
     // http://localhost:8080/showquery?name=bruce
     @GetMapping("showquery")
     public String showQuery(@RequestParam String name, Model model) {
@@ -133,11 +143,42 @@ public class DemoController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    // http://localhost:8080/showlogger?name=name1
     @GetMapping("showlogger")
     public String showLogger(@RequestParam String name, Model model) {
         model.addAttribute("name", name);
         logger.info("name = " + name);
+        logger.debug("name = " + name);
+        logger.error("name = " + name);
+        logger.warn("name = " + name);
+        logger.trace("name = " + name);
         return "showLogger";
+    }
+
+    // form post example
+    @GetMapping("showpost")
+    public String showPostGet()
+    {
+        return "showPost";
+    }
+
+    @PostMapping("showpost")
+    public String showPost(@RequestParam String name, Model model) {
+        model.addAttribute("name", name);
+        return "showPost";
+    }
+
+    // http://localhost:8080/orderform
+    @GetMapping("orderform")
+    public String orderForm(Model model) {
+        model.addAttribute("order", new Order());
+        return "orderForm";
+    }
+
+    @PostMapping("orderform")
+    public String orderForm2(@ModelAttribute Order order, Model model) {
+        model.addAttribute("order", order);
+        return "showOrder";
     }
 
 }

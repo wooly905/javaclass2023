@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show post</title>
+</head>
+<body>
+<!--<p>The parameter value is <span th:text="${value}"></span></p>-->
+<!--th:action="@{/showpost}"-->
+<form action="/showpost" method="post">
+    <input type="text" name="name" />
+    <input type="text" name="name2" />
+    <input type="submit" value="Submit" />
+</form>
+
+<br>
+<br>
+
+<p>The name is <span th:text="${name}"></span></p>
+
+</body>
+</html>

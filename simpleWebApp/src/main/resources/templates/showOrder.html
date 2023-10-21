@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show order</title>
+</head>
+<body>
+<p>You have submitted your order.</p>
+<p>
+    Your order is:
+
+    <table border="0" cellpadding="3" cellspacing="3">
+    <tr>
+        <td>Name</td>
+        <td th:text="${order.name}"></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td th:text="${order.description}"></td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td th:text="${order.price}"></td>
+    </tr>
+    <tr>
+        <td>Vendor</td>
+        <td th:text="${order.vendor}"></td>
+    </tr>
+</table>
+</p>
+</body>
+</html>
