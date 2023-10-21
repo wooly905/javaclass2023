@@ -2,8 +2,8 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
-@Service
-public class AuthenticationService {
+//@Service   //@Component
+public class AuthenticationService implements AuthService {
 
     public Boolean Authenticate (String username, String password) {
         String hashedPassword = SHA512.getSHA512(password);
