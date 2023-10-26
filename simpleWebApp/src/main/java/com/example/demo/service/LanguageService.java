@@ -5,6 +5,8 @@ import com.example.demo.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +23,19 @@ public class LanguageService {
     }
 
     public List<Language> getLanguages() {
-        return languageRepository.getLanguages();
+        return languageRepository.findAll();
+    }
+
+    // add a new language to the database
+    public void save(Language language) {
+        languageRepository.save(language);
+    }
+
+    public void delete(Long id) {
+        languageRepository.deleteById(id);
+    }
+
+    public Language get(Long id) {
+        return languageRepository.findById(id).get();
     }
 }

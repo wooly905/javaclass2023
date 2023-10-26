@@ -3,16 +3,16 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Primary;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Data // From project Lonbok, generates getter and setter methods, equals(), hashCode(), and a default constructor
-@NoArgsConstructor
 public class Language {
 
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "language_id")
     private Long languageId;
 
@@ -20,5 +20,38 @@ public class Language {
     private String name;
 
     @Column(name = "last_update")
-    private LocalDateTime lastUpdate;
+    private LocalDate lastUpdate;
+
+    public Language() {
+    }
+
+    public Language(Long languageId, String name, LocalDate lastUpdate) {
+        this.languageId = languageId;
+        this.name = name;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Long getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(Long languageId) {
+        this.languageId = languageId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDate lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 }
