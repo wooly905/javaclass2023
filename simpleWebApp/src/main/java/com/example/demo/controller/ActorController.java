@@ -35,7 +35,7 @@ public class ActorController {
     public String getActors(Model model) {
         List<Actor> actors = actorRepository.findAll();
         model.addAttribute("actors", actors);
-        return "actor-list.html";
+        return "/sakila/actor-list.html";
     }
 
     // http://localhost:8080/displayactorjdbc?year=2005
@@ -43,7 +43,7 @@ public class ActorController {
     public String getActors2(Model model, @RequestParam Integer year) {
         List<ActorData> actors = sakilaDatabase.getActorCount(year);
         model.addAttribute("actors", actors);
-        return "displayActorsJdbc";
+        return "/sakila/displayActorsJdbc";
     }
 
     // http://localhost:8080/actor-pagination
@@ -67,6 +67,6 @@ public class ActorController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "actor-pagination.html";
+        return "/sakila/actor-pagination.html";
     }
 }

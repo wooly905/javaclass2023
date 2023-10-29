@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -10,6 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "film")
 @Data
+@EqualsAndHashCode(exclude = "playedActors")
+@ToString(exclude = "playedActors")
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +53,9 @@ public class Film {
 
     @ManyToMany
     @JoinTable(
-            name = "film_actor",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
+            name = "film_actor",  // name of the many-to-many table
+            joinColumns = @JoinColumn(name = "film_id"), // name of the column in the many-to-many table that points to this table
+            inverseJoinColumns = @JoinColumn(name = "actor_id") // name of the column in the many-to-many table that points to the other table
     )
-    private Set<Actor> actors = new HashSet<>();
+    private Set<Actor> playedActors;
 }

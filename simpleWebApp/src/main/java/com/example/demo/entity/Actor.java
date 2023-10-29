@@ -2,14 +2,17 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "actor")
 @Data
+@EqualsAndHashCode(exclude = "films")
+@ToString(exclude = "films")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +28,6 @@ public class Actor {
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "film_actor",
-//            joinColumns = @JoinColumn(name = "actor_id"),
-//            inverseJoinColumns = @JoinColumn(name = "film_id")
-//    )
-//    private Set<Film> films = new HashSet<>();
+    @ManyToMany(mappedBy = "playedActors")
+    private Set<Film> films;
 }

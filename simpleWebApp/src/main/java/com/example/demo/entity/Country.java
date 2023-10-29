@@ -23,6 +23,5 @@ public class Country {
     private LocalDate lastUpdate;
 
     @OneToMany(mappedBy = "country")
-    //@JoinColumn(name = "country_id")
     private List<City> cities;
 }

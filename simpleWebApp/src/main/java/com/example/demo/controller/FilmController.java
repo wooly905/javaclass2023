@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,9 +21,16 @@ public class FilmController {
         Optional<Film> filmOptional = filmRepository.findById(filmId);
         if (filmOptional.isPresent()) {
             model.addAttribute("film", filmOptional.get());
-            return "film-detail";
+            return "/sakila/film-detail";
         } else {
             return "errorPage";  // return to an error page or other handling
         }
+    }
+
+    @GetMapping("/film-list")
+    public String getFilms (Model model) {
+        List<Film> films = filmRepository.findAll();
+        model.addAttribute("films", films);
+        return "/sakila/film-list.html";
     }
 }

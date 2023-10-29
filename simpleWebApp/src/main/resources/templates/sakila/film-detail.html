@@ -9,9 +9,9 @@
 </head>
 <body>
 <div>
-    <a href="/">Home</a>
+    <a href="/sakila">Sakila home</a>
     <br>
-    <a href="/film-actor">film-actor</a>
+    <a href="/film-list">film list</a>
 </div>
 
 <h1 class="text-blue text-center" th:text="${film.title}"></h1>
@@ -55,7 +55,7 @@
             <td>Actors</td>
             <td>
                 <ul>
-                    <li th:each="a : ${film.actors}">
+                    <li th:each="a : ${film.playedActors}">
                         <span th:text="${a.firstName} + ' ' + ${a.lastName}"></span>
                     </li>
                 </ul>

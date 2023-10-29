@@ -9,17 +9,11 @@
           crossorigin="anonymous">
 </head>
 <body>
-
+<a href="/language-list">Language list</a>
+<br>
 <h4 class="text-center">Add a language</h4>
 
 <form class="col-md-4 offset-md-4" action="savelanguage" th:object="${language}" method="post">
-<!--    <label for="name">Name:</label>-->
-<!--    <input type="text" id="name" th:field="*{name}" required>-->
-<!--    <br>-->
-<!--    <label for="date">Date:</label>-->
-<!--    <input type="date" id="date" th:field="*{lastUpdate}" required>-->
-<!--    <br>-->
-
     <table class="table table-striped">
         <tr>
             <td><label class="form-label">Name</label></td>
@@ -33,10 +27,6 @@
 
     <input type="submit" class="btn btn-primary" value="Submit">
 </form>
-
-<p>
-    <a href="/displaylanguages">Display languages</a>
-</p>
 
 </body>
 </html>

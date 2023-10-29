@@ -21,13 +21,13 @@ public class LanguageController {
     public String getLanguages(Model model) {
         List<Language> languages = languageService.getLanguages();
         model.addAttribute("languages", languages);
-        return "language-list.html";
+        return "/sakila/language-list.html";
     }
 
     @GetMapping("addlanguage")
     public String showAddLanguageForm(Model model) {
         model.addAttribute("language", new Language());
-        return "addLanguage";
+        return "/sakila/addLanguage.html";
     }
 
     @PostMapping("savelanguage")
@@ -40,7 +40,7 @@ public class LanguageController {
     public String editLanguage(@PathVariable("id") Long id, Model model) {
         Language b = languageService.get(id);
         model.addAttribute("language", b);
-        return "editlanguage";
+        return "/sakila/editlanguage.html";
     }
 
     @GetMapping("deletelanguage/{id}")
