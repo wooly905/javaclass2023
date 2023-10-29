@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Actor;
+import com.example.demo.entity.Actor;
 import com.example.demo.repository.ActorRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,7 +16,7 @@ public class ActorService {
     private List<Actor> actors;
 
     public ActorService(ActorRepository actorRepository) {
-        this.actors = actorRepository.getActors();
+        this.actors = actorRepository.findAll();
     }
 
     public Page<Actor> getActors(Pageable pageable) {

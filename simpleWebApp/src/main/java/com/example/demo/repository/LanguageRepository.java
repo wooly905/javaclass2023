@@ -1,13 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Language;
+import com.example.demo.entity.Language;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language, Long> {

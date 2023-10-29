@@ -1,14 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Language;
-import com.example.demo.repository.LanguageRepository;
+import com.example.demo.entity.Language;
 import com.example.demo.service.LanguageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -19,11 +16,12 @@ public class LanguageController {
         this.languageService = languageService;
     }
 
-    @GetMapping("displaylanguages")
+    // http://localhost:8080/language-list
+    @GetMapping("/language-list")
     public String getLanguages(Model model) {
         List<Language> languages = languageService.getLanguages();
         model.addAttribute("languages", languages);
-        return "displaylanguages.html";
+        return "language-list.html";
     }
 
     @GetMapping("addlanguage")
@@ -35,7 +33,7 @@ public class LanguageController {
     @PostMapping("savelanguage")
     public String addLanguage(@ModelAttribute Language language) {
         languageService.save(language);
-        return "redirect:/displaylanguages";
+        return "redirect:/language-list";
     }
 
     @GetMapping("/editlanguage/{id}")
@@ -48,6 +46,6 @@ public class LanguageController {
     @GetMapping("deletelanguage/{id}")
     public String deleteLanguage(@PathVariable("id") Long id, Model model) {
         languageService.delete(id);
-        return "redirect:/displaylanguages";
+        return "redirect:/language-list";
     }
 }

@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Actor;
+import com.example.demo.entity.Actor;
 import com.example.demo.model.ActorData;
 import com.example.demo.repository.ActorRepository;
 import com.example.demo.repository.SakilaDatabase;
@@ -30,12 +30,12 @@ public class ActorController {
     @Autowired
     private SakilaDatabase sakilaDatabase;
 
-    // http://localhost:8080/displayactors
-    @GetMapping("displayactors")
+    // http://localhost:8080/actor-list
+    @GetMapping("actor-list")
     public String getActors(Model model) {
-        List<Actor> actors = actorRepository.getActors();
+        List<Actor> actors = actorRepository.findAll();
         model.addAttribute("actors", actors);
-        return "displayActors";
+        return "actor-list.html";
     }
 
     // http://localhost:8080/displayactorjdbc?year=2005
@@ -46,8 +46,8 @@ public class ActorController {
         return "displayActorsJdbc";
     }
 
-    // http://localhost:8080/displaypagedactors
-    @GetMapping("displaypagedactors")
+    // http://localhost:8080/actor-pagination
+    @GetMapping("actor-pagination")
     public String getPagedActors(Model model,
                                  @RequestParam("page") Optional<Integer> page,
                                  @RequestParam("size") Optional<Integer> size) {
@@ -67,6 +67,6 @@ public class ActorController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "pageActors.html";
+        return "actor-pagination.html";
     }
 }

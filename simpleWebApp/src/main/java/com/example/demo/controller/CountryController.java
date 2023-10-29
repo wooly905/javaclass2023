@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Country;
+import com.example.demo.entity.Country;
 import com.example.demo.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,11 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
-    @GetMapping("/countries")
+    // http://localhost:8080/country-city-list
+    @GetMapping("/country-city-list")
     public String listCountries(Model model) {
         List<Country> countries = countryService.findAll();
         model.addAttribute("countries", countries);
-        return "country-list";
+        return "country-city-list.html";
     }
 }

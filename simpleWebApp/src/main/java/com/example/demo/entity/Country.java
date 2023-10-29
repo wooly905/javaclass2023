@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
+import com.example.demo.entity.City;
 import jakarta.persistence.*;
 import lombok.Data;
 

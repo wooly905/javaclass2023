@@ -1,12 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Language;
+import com.example.demo.entity.Language;
 import com.example.demo.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Service
