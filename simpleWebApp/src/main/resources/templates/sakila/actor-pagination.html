@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <style>
     .pagination {
         display: inline-block;
@@ -19,13 +18,9 @@
         border-radius: 2px;
     }
 </style>
-<head>
-    <title>Actor List</title>
-</head>
+<div th:replace="sakila/head::static('Actor pagination')"></div>
+<div th:replace="sakila/navigation"></div>
 <body>
-<a href="/sakila">Sakila home</a>
-<br>
-
 <h1>Actor List</h1>
 <table border="1">
     <thead>

@@ -1,9 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="sakila/head::static('Show rental')"></div>
+<div th:replace="sakila/navigation"></div>
 <body>
-<a href="/sakila">Sakila home</a>
-<br>
-
 <h1>Rentals between <span th:text="${startDate}"></span> and <span th:text="${endDate}"></span></h1>
 <br>
 <p>

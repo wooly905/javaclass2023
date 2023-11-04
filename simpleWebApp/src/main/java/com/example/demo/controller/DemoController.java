@@ -96,7 +96,7 @@ public class DemoController {
     @GetMapping("ifelseswitch")
     public String ifelseswitch(Model model) {
 
-        model.addAttribute("value", "2");
+        model.addAttribute("value", "no");
         model.addAttribute("role", "admin");
 
         return "ifelseswitch";
