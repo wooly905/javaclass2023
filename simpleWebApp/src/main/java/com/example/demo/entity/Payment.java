@@ -29,7 +29,7 @@ public class Payment {
     @JoinColumn(name="customer_id")
     private Customer customer;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     @JoinColumn(name = "rental_id")
     private Rental rental;
 }

@@ -26,4 +26,8 @@ public class Rental {
 
     @OneToOne(mappedBy = "rental")
     private Payment payment;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 }

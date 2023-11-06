@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="sakila/head::static('Show staffs')"></div>
+<div th:replace="sakila/navigation"></div>
+<body>
+<a href="/staff-list">Staff list</a>
+<br>
+<div class="container my-5 col-md-8">
+    <table class="table table-striped table-hover">
+       <tr>
+           <td>staff id</td>
+           <td th:text="${staff.staffId}"></td>
+       </tr>
+        <tr>
+            <td>staff name</td>
+            <td th:text="${staff.firstname} + ' ' + ${staff.lastname}"></td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td th:text="${staff.email}"></td>
+        </tr>
+        <tr>
+            <td>address</td>
+            <td th:text="${staff.address.address} + ' ' + ${staff.address.district} + ' ' + ${staff.address.postalCode}"></td>
+        </tr>
+        <tr>
+            <td>phone</td>
+            <td th:text="${staff.address.phone}"></td>
+        </tr>
+    </table>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>Processed rentals</td>
+            <td>Processed payments</td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li th:each="r : ${staff.rentals}">
+                        <span th:text="${r.customer.firstName} + ' ' + ${r.customer.lastName}"></span> at <span th:text="${r.rentalDate}"></span>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li th:each="p : ${staff.payments}">
+                        $<span th:text="${p.amount}"></span> at <span th:text="${p.paymentDate}"></span>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

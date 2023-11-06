@@ -29,4 +29,11 @@ public class Staff {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @OneToMany(mappedBy = "staff")
+    private List<Rental> rentals;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 }
