@@ -3,17 +3,13 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "film")
 @Data
-@EqualsAndHashCode(exclude = "playedActors")
-@ToString(exclude = "playedActors")
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +18,10 @@ public class Film {
 
     @Column(name = "title")
     private String title;
+
+    public String getTitle() {
+        return title;
+    }
 
     @Column(name = "description")
     private String description;
@@ -51,11 +51,21 @@ public class Film {
     @Column(name = "special_features")
     private String specialFeatures;
 
+    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
             name = "film_actor",  // name of the many-to-many table
             joinColumns = @JoinColumn(name = "film_id"), // name of the column in the many-to-many table that points to this table
             inverseJoinColumns = @JoinColumn(name = "actor_id") // name of the column in the many-to-many table that points to the other table
     )
-    private Set<Actor> playedActors;
+    private List<Actor> playedActors;
+
+    @EqualsAndHashCode.Exclude
+    @ManyToMany
+    @JoinTable(
+            name = "film_category",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
 }

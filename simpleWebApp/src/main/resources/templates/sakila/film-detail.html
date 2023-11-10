@@ -42,6 +42,16 @@
             <td>Special Features</td>
             <td th:text="${film.specialFeatures}"></td>
         </tr>
+        <tr>
+            <td>Categories</td>
+            <td>
+                <ul>
+                    <li th:each="a : ${film.categories}">
+                        <span th:text="${a.name}"></span>
+                    </li>
+                </ul>
+            </td>
+        </tr>
 
         <tr>
             <td>Actors</td>

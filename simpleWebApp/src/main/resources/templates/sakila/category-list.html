@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="sakila/head::static('Show categories')"></div>
+<div th:replace="sakila/navigation"></div>
+<body>
+<div class="container my-5 col-md-8">
+    <table class="table table-striped table-hover">
+        <thread>
+            <tr>
+                <td>id</td>
+                <td>Category name</td>
+                <td>Films</td>
+            </tr>
+        </thread>
+        <tr th:each="ca : ${categories}">
+            <td th:text="${ca.id}"></td>
+            <td th:text="${ca.name}"></td>
+            <td>
+                <ul>
+                    <li th:each="film : ${ca.films}" th:text="${film.title}"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

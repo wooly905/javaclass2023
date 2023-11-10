@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "actor")
@@ -25,9 +25,13 @@ public class Actor {
     @Column(name = "last_name")
     private String lastName;
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
     @ManyToMany(mappedBy = "playedActors")
-    private Set<Film> films;
+    private List<Film> films;
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Actor;
 import com.example.demo.entity.Film;
 import com.example.demo.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +30,7 @@ public class FilmController {
     }
 
     @GetMapping("/film-list")
-    public String getFilms (Model model) {
+    public String getFilms(Model model) {
         List<Film> films = filmRepository.findAll();
         model.addAttribute("films", films);
         return "/sakila/film-list.html";
