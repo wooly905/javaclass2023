@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -52,6 +53,7 @@ public class Film {
     private String specialFeatures;
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(
             name = "film_actor",  // name of the many-to-many table
@@ -61,6 +63,7 @@ public class Film {
     private List<Actor> playedActors;
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(
             name = "film_category",

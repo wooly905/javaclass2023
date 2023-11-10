@@ -11,8 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "actor")
 @Data
-@EqualsAndHashCode(exclude = "films")
-@ToString(exclude = "films")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +30,8 @@ public class Actor {
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "playedActors")
     private List<Film> films;
 }

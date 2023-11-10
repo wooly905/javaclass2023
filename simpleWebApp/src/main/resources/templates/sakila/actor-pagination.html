@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<style>
-    .pagination {
-        display: inline-block;
-    }
-
-    .pagination a {
-        color: black;
-        float: left;
-        padding: 5px 5px;
-        text-decoration: none;
-    }
-
-    .pagination a.active {
-        background-color: gray;
-        color: white;
-        border-radius: 2px;
-    }
-</style>
 <div th:replace="sakila/head::static('Actor pagination')"></div>
 <div th:replace="sakila/navigation"></div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    table {
+        width: 100%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    thead {
+        background-color: #007bff;
+        color: #fff;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    tbody tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .pagination a {
+        margin: 0 5px;
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        color: #007bff;
+        text-decoration: none;
+    }
+    .pagination a.active {
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+    }
+    .pagination a:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+</style>
 <body>
 <h1>Actor List</h1>
-<table border="1">
+<table>
     <thead>
     <tr>
         <th>Id</th>
@@ -35,14 +65,14 @@
     <tr th:each="actor, iStat : ${actorPage.content}"
         th:style="${iStat.odd}? 'font-weight: bold;'"
         th:alt-title="${iStat.even}? 'even' : 'odd'">
-        <td th:text="${actor.actorId}" />
-        <td th:text="${actor.firstName}" />
-        <td th:text="${actor.lastName}" />
-        <td th:text="${actor.lastUpdate}" />
+        <td th:text="${actor.actorId}"/>
+        <td th:text="${actor.firstName}"/>
+        <td th:text="${actor.lastName}"/>
+        <td th:text="${actor.lastUpdate}"/>
     </tr>
     </tbody>
 </table>
-<div th:if="${actorPage.totalPages > 0}" class="pagination"
+<div th:if="${actorPage.totalPages > 0}"
      th:each="pageNumber : ${pageNumbers}">
     <a th:href="@{/actor-pagination(size=${actorPage.size}, page=${pageNumber})}"
        th:text=${pageNumber}

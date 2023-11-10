@@ -2,12 +2,17 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Actor;
 import com.example.demo.entity.Film;
+import com.example.demo.repository.ActorRepository;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.FilmRepository;
+import com.example.demo.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Comparator;
 import java.util.List;
@@ -17,6 +22,15 @@ import java.util.Optional;
 public class FilmController {
     @Autowired
     private FilmRepository filmRepository;
+
+    @Autowired
+    private LanguageRepository languageRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ActorRepository actorRepository;
 
     @GetMapping("/film/{filmId}")
     public String viewFilm(@PathVariable Long filmId, Model model) {
@@ -34,5 +48,20 @@ public class FilmController {
         List<Film> films = filmRepository.findAll();
         model.addAttribute("films", films);
         return "/sakila/film-list.html";
+    }
+
+    @GetMapping("/addFilm")
+    public String showAddFilmForm(Model model) {
+        model.addAttribute("film", new Film());
+        model.addAttribute("languages", languageRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("actors", actorRepository.findAll());
+        return "/sakila/add-film.html";
+    }
+
+    @PostMapping("/addFilm")
+    public String addFilm(@ModelAttribute("film") Film film) {
+        filmRepository.save(film);
+        return "redirect:/film-list";
     }
 }
