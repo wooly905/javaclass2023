@@ -13,15 +13,20 @@
                 <td>id</td>
                 <td>Title</td>
                 <td>Description</td>
+                <td>Action</td>
             </tr>
         </thread>
         <tr th:each="f,status : ${films}">
             <td th:text="${f.filmId}"></td>
             <td><a th:href="@{/film/{filmId}(filmId=${f.filmId})}" th:text="${f.title}"></a></td>
             <td th:text="${f.description}"></td>
+            <td>
+                <a style="color:red" th:href="@{/removeFilm/{filmId}(filmId=${f.filmId})}">
+                    <i class="fa-solid fa-trash ms-4"></i>
+                </a>
+            </td>
         </tr>
     </table>
 </div>
-
 </body>
 </html>

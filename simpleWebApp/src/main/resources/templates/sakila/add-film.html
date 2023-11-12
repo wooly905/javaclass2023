@@ -82,8 +82,16 @@
             <td><input type="number" step="0.01" id="replacementCost" name="replacementCost" th:field="*{replacementCost}" /></td>
         </tr>
         <tr>
-            <td><label for="specialFeatures">Special Features:</label></td>
-            <td><input type="text" id="specialFeatures" name="specialFeatures" th:field="*{specialFeatures}" /></td>
+            <td>Special Features</td>
+            <td>
+                <input type="checkbox" id="trailers" name="specialFeatures" value="Trailers">Trailers
+                <br>
+                <input type="checkbox" id="commentaries" name="specialFeatures" value="Commentaries">Commentaries
+                <br>
+                <input type="checkbox" id="deletedScenes" name="specialFeatures" value="Deleted Scenes">Deleted Scenes
+                <br>
+                <input type="checkbox" id="behindTheScenes" name="specialFeatures" value="Behind the Scenes">Behind the Scenes
+            </td>
         </tr>
         <tr>
             <td><label for="language">Language:</label></td>

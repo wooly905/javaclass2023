@@ -52,6 +52,10 @@ public class Film {
     @Column(name = "special_features")
     private String specialFeatures;
 
+    public void setSpecialFeatures(String specialFeatures) {
+        this.specialFeatures = specialFeatures;
+    }
+
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @ManyToMany

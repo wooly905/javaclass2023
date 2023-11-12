@@ -9,14 +9,12 @@ import com.example.demo.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 @Controller
 public class FilmController {
@@ -60,8 +58,24 @@ public class FilmController {
     }
 
     @PostMapping("/addFilm")
-    public String addFilm(@ModelAttribute("film") Film film) {
+    public String addFilm(@RequestParam(value = "specialFeatures", required = false) String[] specialFeatures,
+                          @ModelAttribute("film") Film film) {
+        if (specialFeatures != null) {
+            StringJoiner joiner = new StringJoiner(",");
+
+            for (String feature : specialFeatures) {
+                joiner.add(feature);
+            }
+            film.setSpecialFeatures(joiner.toString());
+        }
+
         filmRepository.save(film);
+        return "redirect:/film-list";
+    }
+
+    @GetMapping("/removeFilm/{filmId}")
+    public String removeFilm(@PathVariable Long filmId) {
+        filmRepository.deleteById(filmId);
         return "redirect:/film-list";
     }
 }
