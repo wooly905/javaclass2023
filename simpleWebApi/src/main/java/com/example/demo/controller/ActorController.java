@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Actor;
 import com.example.demo.repository.ActorRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Actor service", description = "API to manage actors in Sakila DVD Rental database")
 @RestController
 @RequestMapping("/api")
 public class ActorController {

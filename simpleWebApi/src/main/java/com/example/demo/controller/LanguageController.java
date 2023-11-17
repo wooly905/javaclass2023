@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Language;
 import com.example.demo.repository.LanguageRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name ="Language service", description = "API to manage languages in Sakila DVD Rental database")
 @RestController
 @RequestMapping("/api")
 public class LanguageController {
