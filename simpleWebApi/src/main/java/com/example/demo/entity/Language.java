@@ -1,13 +1,15 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
+@JsonPropertyOrder(value={"id", "name", "lastUpdate"})
 public class Language {
 
     @Id
@@ -28,5 +30,13 @@ public class Language {
 
     @JsonFormat(pattern = "MM-dd-yyyy", timezone = "GMT+8")
     @Column(name = "last_update")
-    private Date lastUpdate;
+    private LocalDateTime lastUpdate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
 }
