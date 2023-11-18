@@ -28,7 +28,7 @@ public class ActorController {
         return ResponseEntity.ok(actors);
     }
 
-    // return a sepcific actor based on actor id
+    // return a specific actor based on actor id
     @GetMapping("/actors/{id}")
     public ResponseEntity<Actor> getActorById(@PathVariable(value = "id") Long actorId) {
         Optional<Actor> actorOptional = actorRepository.findById(actorId);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,21 +40,36 @@ public class LanguageController {
 
     // create language here
     @PostMapping("/languages")
-    public ResponseEntity<Language> createLanguage(@RequestBody Language lang) {
-        Language newLang = languageRepository.save(lang);
-        return ResponseEntity.ok(newLang);
+    public ResponseEntity<?> createLanguage(@RequestBody Language lang) {
+
+        try {
+            String inputName = lang.getName();
+            List<Language> langs = languageRepository.getLanguageByName(inputName);
+
+            if (langs.isEmpty())
+            {
+                languageRepository.save(lang);
+                URI uri = new URI("http://localhost:8080/languages/");
+                return ResponseEntity.created(uri).build();
+            }
+
+            return ResponseEntity.badRequest().build();
+
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     // update language here
     @PutMapping("/languages/{id}")
-    public ResponseEntity<Language> updateLanguage(@PathVariable(value = "id") Long id, @RequestBody Language lang) {
+    public ResponseEntity<?> updateLanguage(@PathVariable(value = "id") Long id, @RequestBody Language lang) {
         Optional<Language> existingLang = languageRepository.findById(id);
 
         if (existingLang.isPresent()) {
             Language newLang = existingLang.get();
             newLang.setName(lang.getName());
             languageRepository.save(newLang);
-            return ResponseEntity.ok(newLang);
+            return ResponseEntity.ok().build();
         }
 
         return ResponseEntity.notFound().build();
@@ -61,7 +77,7 @@ public class LanguageController {
 
     // delete language here
     @DeleteMapping("/languages/{id}")
-    public ResponseEntity<Language> deleteLanguage(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> deleteLanguage(@PathVariable(value = "id") Long id) {
         Optional<Language> existingLang = languageRepository.findById(id);
 
         if (existingLang.isPresent()) {
@@ -70,5 +86,10 @@ public class LanguageController {
         }
 
         return ResponseEntity.notFound().build();
+
+//        return languageRepository.findById(id).map(language -> {
+//            languageRepository.delete(language);
+//            return ResponseEntity.ok().build();
+//        }).orElse(ResponseEntity.notFound().build());
     }
 }
