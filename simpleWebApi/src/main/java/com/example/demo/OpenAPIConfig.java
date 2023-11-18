@@ -1,8 +1,8 @@
 package com.example.demo;
+// http://localhost:8080/swagger-ui/index.html
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,21 +14,14 @@ import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
 public class OpenAPIConfig {
-
-    @Value("http://localhost:8080")
-    private String devUrl;
-
-    @Value("https://localhost")
-    private String prodUrl;
-
     @Bean
     public OpenAPI myOpenAPI() {
         Server devServer = new Server();
-        devServer.setUrl(devUrl);
+        devServer.setUrl("http://localhost:8080");
         devServer.setDescription("Server URL in Development environment");
 
         Server prodServer = new Server();
-        prodServer.setUrl(prodUrl);
+        prodServer.setUrl("https://localhost");
         prodServer.setDescription("Server URL in Production environment");
 
         Contact contact = new Contact();
@@ -39,10 +32,10 @@ public class OpenAPIConfig {
         License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
 
         Info info = new Info()
-                .title("Demo API")
-                .version("1.0")
+                .title("Sakila web api")
+                .version("0.1")
                 .contact(contact)
-                .description("This API exposes endpoints to manage tutorials.")
+                .description("The API points that help you manage Sakila")
                 .termsOfService("https://test.com/terms")
                 .license(mitLicense);
 
