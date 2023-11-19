@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Film Catalog</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: 'http://localhost:8080/api/v1/films',
+                type: 'GET',
+                success: function(films) {
+                    if(films.length > 0) {
+                        films.forEach(function(film) {
+                            var filmDiv = $('<div class="film"></div>');
+                            filmDiv.append('<h3>' + film.title + '</h3>');
+                            filmDiv.append('<p><strong>Description:</strong> ' + film.description + '</p>');
+                            filmDiv.append('<p><strong>Release Year:</strong> ' + film.releaseYear + '</p>');
+                            filmDiv.append('<p><strong>Language:</strong> ' + film.language.name + '</p>');
+
+                            var actorNames = film.actors.map(function(actor) { return actor.firstName + ' ' + actor.lastName; }).join(', ');
+                            filmDiv.append('<p><strong>Actors:</strong> ' + actorNames + '</p>');
+
+                            var categoryNames = film.categories.map(function(category) { return category.name; }).join(', ');
+                            filmDiv.append('<p><strong>Categories:</strong> ' + categoryNames + '</p>');
+
+                            $('#films').append(filmDiv);
+                        });
+                    } else {
+                        $('#films').append('<p>No films found.</p>');
+                    }
+                },
+                error: function() {
+                    $('#films').append('<p>Error loading films.</p>');
+                }
+            });
+        });
+
+    </script>
+    <style>
+        /* CSS styling */
+        #films {
+            margin-top: 20px;
+        }
+
+        .film {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<h1>Film Catalog</h1>
+
+<div id="films">
+</div>
+
+</body>
+</html>

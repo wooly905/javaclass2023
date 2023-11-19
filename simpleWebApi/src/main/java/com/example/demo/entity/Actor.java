@@ -23,11 +23,11 @@ public class Actor {
     @Column(name = "actor_id")
     private Long id;
 
-    @JsonProperty("author first name")
+    @JsonProperty("firstName")
     @Column(name = "first_name")
     private String firstname;
 
-    @JsonProperty("author last name")
+    @JsonProperty("lastName")
     @Column(name = "last_name")
     private String lastname;
 
