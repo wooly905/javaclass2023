@@ -21,7 +21,7 @@ public class OpenAPIConfig {
         devServer.setDescription("Server URL in Development environment");
 
         Server prodServer = new Server();
-        prodServer.setUrl("https://localhost");
+        prodServer.setUrl("https://localhost:8081");
         prodServer.setDescription("Server URL in Production environment");
 
         Contact contact = new Contact();
