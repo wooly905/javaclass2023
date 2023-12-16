@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Point Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* 藍色系背景色 */
+            color: #333; /* 字體顏色 */
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #000080; /* 藍色字體 */
+        }
+
+        /* 上方會員資訊的樣式 */
+        .member-info {
+            display: flex;
+            justify-content: space-between;
+            color: #000080; /* 藍色字體 */
+        }
+
+        /* 中間點數的樣式 */
+        .points {
+            font-size: 3em; /* 放大三倍 */
+            margin-top: 20px;
+            color: #000080; /* 藍色字體 */
+        }
+
+        /* 下方按鈕的樣式 */
+        .back-button {
+            font-size: 3em; /* 放大三倍 */
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff; /* 白色字體 */
+            background-color: #008080; /* 深藍綠色按鈕 */
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #006666; /* 淺藍綠色激活按鈕 */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Check Point</h2>
+
+    <!-- 顯示會員編號、會員名字、充電椿編號 -->
+    <div class="member-info">
+        <p>會員編號: <span th:text="${customerId}"></span></p>
+        <p>會員名字: <span th:text="${customerName}"></span></p>
+        <p>充電椿編號: <span th:text="${chargingId}"></span></p>
+    </div>
+
+    <!-- 顯示目前會員的點數 -->
+    <div class="points">
+        <p>目前點數: <span th:text="${point}"></span></p>
+    </div>
+
+    <!-- 回到上一頁的按鈕 -->
+    <a href="javascript:history.back()" class="back-button">回到上一頁</a>
+</div>
+</body>
+</html>

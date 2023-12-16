@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EV project fake login</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form {
+            text-align: center;
+        }
+
+        .form label, .form select, .form button {
+            margin: 10px;
+        }
+
+        .form button {
+            background-color: #00ff00;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="form-container">
+    <div class="form">
+        <h2>模擬客戶進場的畫面</h2>
+
+        <form th:action="@{/processLogin}" method="post">
+            <label>充電椿編號：</label>
+            <select name="chargingId">
+                <option th:each="chargingId : ${chargingIds}" th:value="${chargingId}" th:text="${chargingId}"></option>
+            </select>
+
+            <label>客戶名字：</label>
+            <select name="customerId">
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.customerName}"></option>
+            </select>
+
+            <button type="submit">登錄</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

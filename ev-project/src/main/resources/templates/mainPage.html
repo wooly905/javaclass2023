@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <style>
+    body {
+        background-color: #f0f8ff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .user-info {
+        margin: 20px;
+    }
+
+    .main-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+    }
+
+    .main-button {
+        background-color: #00ff00;
+        padding: 60px; /* 調整 padding 大小 */
+        margin: 10px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 3em; /* 放大三倍字體大小 */
+        text-decoration: none; /* 移除預設連結樣式 */
+        display: inline-block; /* 使按鈕能夠置中 */
+    }
+  </style>
+</head>
+<body>
+<!-- 顯示用戶信息 -->
+<div class="user-info">
+  <h2 th:text="'用戶：' + ${customerName} + ' 會員編號: ' + ${customerId} + '，充電椿編號：' + ${chargingId}"></h2>
+</div>
+
+<!-- 兩個大按鈕，用於充電和查詢點數 -->
+<div class="main-buttons">
+  <a th:href="@{/charge1}" class="main-button">充電</a>
+  <a th:href="@{/checkpoint}" class="main-button">查詢點數</a>
+</div>
+</body>
+</html>

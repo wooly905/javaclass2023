@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>錯誤畫面</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e6f7ff; /* 淡藍色背景 */
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff; /* 白色容器 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .error-message {
+            color: #ff0000; /* 紅色錯誤訊息文字顏色 */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-support {
+            color: #333333; /* 深灰色字樣文字顏色 */
+            margin-top: 10px;
+        }
+
+        .btn-custom {
+            background-color: #0066cc; /* 深藍色按鈕 */
+            color: #ffffff;
+        }
+
+        .jumbotron {
+            background-color: #80bfff; /* 深淡藍色大字樣背景 */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>豐文充電站</h1>
+        <span th:text="${chargingId}" class="lead"></span>號充電椿
+    </div>
+
+    <!-- 發生異常現象 -->
+    <div>發生異常現象</div>
+
+    <!-- 錯誤訊息 -->
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+    <!-- 請連絡客服 -->
+    <div class="contact-support">請連絡客服</div>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

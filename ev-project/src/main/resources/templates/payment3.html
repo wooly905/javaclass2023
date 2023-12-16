@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>充電畫面</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e6f7ff; /* 淡藍色背景 */
+            padding: 20px;
+            position: relative; /* 加入相對定位 */
+        }
+
+        .container {
+            background-color: #ffffff; /* 白色容器 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .jumbotron {
+            background-color: #80bfff; /* 深淡藍色大字樣背景 */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            background-color: #0066cc; /* 深藍色按鈕 */
+            color: #ffffff;
+        }
+
+        .btn-payment {
+            background-color: #339933; /* 深綠色按鈕 */
+            color: #ffffff;
+            padding: 10px 20px; /* 調整按鈕大小 */
+        }
+
+        .btn-small {
+            margin-top: 10px;
+            margin-right: 10px;
+            position: absolute; /* 絕對定位 */
+            bottom: 0; /* 距離底部 0 像素 */
+            right: 0; /* 距離右邊 0 像素 */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 最上方公司名稱和充電椿編號 -->
+    <div class="jumbotron text-center">
+        <h1>豐文充電站</h1>
+        <span th:text="${chargingId}" class="lead"></span>號充電椿
+    </div>
+
+    <div class="row">
+        <!-- 左邊區域 -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="userName">使用者名稱</label>
+                <input type="text" th:value="${customerName}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="point">目前會員點數</label>
+                <input type="text" th:value="${point}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <p>
+                    此次充電 <span th:text="${chargeWatt}"></span>KW, 一共 <span th:text="${amount}"></span> 元.
+                    請感應信用卡.
+                </p>
+            </div>
+        </div>
+
+        <!-- 右邊區域 -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>銀行名稱</th>
+                        <th>折扣率</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 使用 th:each 遍歷 creditCardDiscounts -->
+                    <tr th:each="discount : ${creditCardDiscounts}">
+                        <!-- 使用 *{} 取得物件的屬性 -->
+                        <td th:text="${discount.bankName}"></td>
+                        <td th:text="${discount.discount * 100} + '%'"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增兩個小按鈕 -->
+    <a href="/payment4" class="btn btn-custom btn-small">感應成功</a>
+    <a href="/payment5" class="btn btn-custom btn-small" style="right: 80px;">感應失敗</a>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
